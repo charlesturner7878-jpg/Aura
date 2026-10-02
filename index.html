@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aura Studioz — Clothes for whom reek of aura</title>
+    <meta
+      name="description"
+      content="Aura Studioz is streetwear for the rebellious and the creative. Self-expression, individuality and the power of style. Clothes for whom reek of aura."
+    />
+    <meta name="theme-color" content="#0b0907" />
+    <meta property="og:title" content="Aura Studioz" />
+    <meta property="og:description" content="Clothes for whom reek of aura." />
+    <meta property="og:image" content="assets/logo.jpg" />
+    <link rel="icon" type="image/png" href="assets/logo-as.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Fixed WebGL stage that lives behind the whole page -->
+    <canvas id="stage" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <img src="assets/logo-as.png" alt="" />
+      <span class="loader-bar"><i></i></span>
+    </div>
+
+    <header class="nav">
+      <a href="#top" class="nav-logo" aria-label="Aura Studioz home">
+        <img src="assets/logo-as.png" alt="" />
+        <span>AURA STUDIOZ</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#drop">The Drop</a>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#join" class="nav-cta">Join the Aura</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Drop 001 &mdash; Streetwear Studio</p>
+          <h1 class="hero-title">
+            <span class="line"><span>Clothes for</span></span>
+            <span class="line"><span>whom reek</span></span>
+            <span class="line"
+              ><span>of <em class="script">aura</em>.</span></span
+            >
+          </h1>
+          <p class="hero-sub">
+            Rebellious by nature. Creative by design. Built for the ones who walk in and change the temperature of the
+            room.
+          </p>
+          <div class="hero-ctas">
+            <a href="#drop" class="btn btn-gold">Shop the Drop</a>
+            <a href="#manifesto" class="btn btn-ghost">Read the Manifesto</a>
+          </div>
+        </div>
+        <div class="scroll-hint" aria-hidden="true"><span></span>Scroll</div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Self-Expression</span><b>✦</b><span>Individuality</span><b>✦</b><span>The Power of Style</span><b>✦</b
+          ><span>Reek of Aura</span><b>✦</b> <span>Self-Expression</span><b>✦</b><span>Individuality</span><b>✦</b
+          ><span>The Power of Style</span><b>✦</b><span>Reek of Aura</span><b>✦</b>
+        </div>
+      </div>
+
+      <!-- DROP -->
+      <section class="drop" id="drop">
+        <div class="section-head reveal">
+          <p class="eyebrow">Featured Piece</p>
+          <h2>The Aura Zip</h2>
+        </div>
+
+        <div class="drop-grid">
+          <div class="tilt-wrap reveal">
+            <div class="tilt" data-tilt>
+              <img
+                src="assets/aura-zip-hoodie.jpg"
+                alt="Mustard waffle-knit zip hoodie with distressed details and white 'Aura' script embroidery on the front pocket"
+              />
+              <div class="tilt-glare"></div>
+              <span class="tilt-badge">Drop 001</span>
+            </div>
+          </div>
+
+          <div class="drop-info reveal">
+            <p class="drop-color"><span class="swatch"></span>Mustard / Sun-faded</p>
+            <p class="drop-desc">
+              Waffle-knit cotton, washed until it remembers the sun. Hand-distressed across the chest and shoulders,
+              cropped boxy body, dropped shoulders and a heavy-duty two-way zip. Finished with our signature
+              <em class="script">Aura</em> script stitched in white on the pocket.
+            </p>
+            <ul class="drop-specs">
+              <li><span>Fabric</span>Garment-dyed waffle knit</li>
+              <li><span>Fit</span>Cropped &amp; boxy</li>
+              <li><span>Detail</span>Hand-distressed, raw hem</li>
+              <li><span>Hardware</span>Two-way silver zip</li>
+            </ul>
+            <div class="sizes" role="radiogroup" aria-label="Size">
+              <button role="radio" aria-checked="false">S</button>
+              <button role="radio" aria-checked="true" class="active">M</button>
+              <button role="radio" aria-checked="false">L</button>
+              <button role="radio" aria-checked="false">XL</button>
+              <button role="radio" aria-checked="false">XXL</button>
+            </div>
+            <a href="#join" class="btn btn-gold btn-wide">Get Notified for the Drop</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFESTO -->
+      <section class="manifesto" id="manifesto">
+        <div class="section-head reveal">
+          <p class="eyebrow">The Manifesto</p>
+          <h2>Style is a loud thing<br />worn quietly.</h2>
+        </div>
+
+        <div class="pillars">
+          <article class="pillar reveal" data-tilt>
+            <span class="pillar-num">01</span>
+            <h3>Self-Expression</h3>
+            <p>Your fit is a statement before you say a word. We make the canvas &mdash; you make it speak.</p>
+          </article>
+          <article class="pillar reveal" data-tilt>
+            <span class="pillar-num">02</span>
+            <h3>Individuality</h3>
+            <p>No uniforms. No copies. Distressed by hand so no two pieces wear the same story.</p>
+          </article>
+          <article class="pillar reveal" data-tilt>
+            <span class="pillar-num">03</span>
+            <h3>The Power of Style</h3>
+            <p>Aura isn&rsquo;t bought, it&rsquo;s radiated. The right piece just turns the volume up.</p>
+          </article>
+        </div>
+
+        <blockquote class="big-quote reveal">
+          &ldquo;We don&rsquo;t follow the street.<br />We <em class="script">are</em> the street.&rdquo;
+        </blockquote>
+      </section>
+
+      <!-- LOOKBOOK -->
+      <section class="lookbook" id="lookbook">
+        <div class="look-grid">
+          <figure class="look-photo reveal" data-tilt>
+            <img
+              src="assets/lookbook-vegas.jpg"
+              alt="Aura Studioz founder wearing the mustard Aura Zip over a graphic tee and distressed denim inside a Las Vegas casino"
+              loading="lazy"
+            />
+            <figcaption>Las Vegas, NV &mdash; Aura Zip / Mustard</figcaption>
+          </figure>
+          <div class="look-copy reveal">
+            <p class="eyebrow">Lookbook &mdash; Seen in the Wild</p>
+            <h2>Loud floors.<br />Louder fits.</h2>
+            <p>
+              Shot on the casino floor where everything is screaming for attention &mdash; and the Aura Zip still pulls
+              focus. Oversized denim, a faded graphic tee, mustard on top. No styling team. Just aura.
+            </p>
+            <a href="#join" class="btn btn-ghost">Get First Access</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOIN -->
+      <section class="join" id="join">
+        <div class="join-card reveal">
+          <img class="join-logo" src="assets/logo-mark.png" alt="Aura Studioz logo" />
+          <h2>Join the Aura</h2>
+          <p>Drops are limited and they don&rsquo;t come back. Get on the list for early access to Drop 001.</p>
+          <form class="join-form" id="joinForm" novalidate>
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required />
+            <button type="submit" class="btn btn-gold">I Reek of Aura</button>
+          </form>
+          <p class="join-msg" id="joinMsg" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <img src="assets/logo-as.png" alt="" />
+        <div>
+          <strong>AURA STUDIOZ</strong>
+          <span>Clothes for whom reek of aura.</span>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#drop">Shop</a>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#join">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year"></span> Aura Studioz. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
