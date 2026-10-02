@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Saltwood — Wood-Fire Kitchen &amp; Wine Bar</title>
+    <meta
+      name="description"
+      content="Saltwood is a wood-fire kitchen and wine bar in the Harbor District. A nine-course tasting menu, an eight-seat hearth counter and 140 bottles of low-intervention wine. Reserve your table."
+    />
+    <meta name="theme-color" content="#0e0c0a" />
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Saltwood — Wood-Fire Kitchen &amp; Wine Bar" />
+    <meta property="og:description" content="Cooked over fire. Served with intent. Reserve your table." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.min.js",
+          "three/addons/": "./vendor/addons/"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Saltwood",
+        "servesCuisine": ["Wood-fired", "Seasonal", "Coastal"],
+        "priceRange": "$$$",
+        "telephone": "+1-555-014-2290",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "88 Pier Street",
+          "addressLocality": "Harbor District"
+        },
+        "acceptsReservations": "True",
+        "openingHours": ["Tu-Th 17:00-22:00", "Fr-Sa 17:00-23:00", "Su 16:00-21:00"]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- Fixed WebGL stage behind the first part of the page -->
+    <canvas id="stage" aria-hidden="true"></canvas>
+    <div class="stage-fallback" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-inner">
+        <svg class="loader-mark" viewBox="0 0 64 64"><use href="#mark" /></svg>
+        <p class="loader-word">Saltwood</p>
+        <p class="loader-count"><span id="loaderCount">0</span>%</p>
+      </div>
+    </div>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="mark" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path
+          d="M32 12c4 7 10 11 10 20a10 10 0 0 1-20 0c0-4 2-7 4-9 0 4 2 6 4 6-2-6 0-11 2-17Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path d="M18 48h28M22 53h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </symbol>
+    </svg>
+
+    <header class="nav" id="nav">
+      <a href="#top" class="brand" aria-label="Saltwood home">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#mark" /></svg>
+        <span>Saltwood</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main">
+        <a href="#story">Story</a>
+        <a href="#signatures">Signatures</a>
+        <a href="#menu">Menu</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#visit">Visit</a>
+        <a href="#reserve" class="nav-mobile-cta">Reserve a table</a>
+      </nav>
+      <div class="nav-right">
+        <span class="open-badge" id="openBadge"><i></i><span>Open tonight</span></span>
+        <a href="#reserve" class="btn btn-ember btn-sm magnetic">Reserve</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="dash"></span>Wood-fire kitchen &amp; wine bar &mdash; Harbor District</p>
+          <h1 class="hero-title">
+            <span class="line"><span>Cooked over</span></span>
+            <span class="line"
+              ><span><em>fire.</em> Served</span></span
+            >
+            <span class="line"><span>with intent.</span></span>
+          </h1>
+          <div class="hero-visual" id="heroVisual" aria-hidden="true"></div>
+          <p class="hero-sub">
+            Nine courses from a single oak hearth. Day-boat seafood, whole-animal butchery and vegetables pulled from
+            the embers, poured alongside 140 bottles of honest wine.
+          </p>
+          <div class="hero-ctas">
+            <a href="#reserve" class="btn btn-ember magnetic">Reserve a table</a>
+            <a href="#menu" class="btn btn-line">View the menu <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+
+        <dl class="hero-facts">
+          <div>
+            <dt>Tonight</dt>
+            <dd id="heroHours">5:00 &ndash; 11:00 PM</dd>
+          </div>
+          <div>
+            <dt>Tasting menu</dt>
+            <dd>$145 &middot; 9 courses</dd>
+          </div>
+          <div>
+            <dt>Find us</dt>
+            <dd>88 Pier Street</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Oak &amp; Ember</span><i>✦</i><span>Day-boat seafood</span><i>✦</i><span>Whole-animal</span><i>✦</i
+          ><span>Natural wine</span><i>✦</i><span>Seasonal, always</span><i>✦</i><span>Oak &amp; Ember</span><i>✦</i
+          ><span>Day-boat seafood</span><i>✦</i><span>Whole-animal</span><i>✦</i><span>Natural wine</span><i>✦</i
+          ><span>Seasonal, always</span><i>✦</i>
+        </div>
+      </div>
+
+      <!-- STORY -->
+      <section class="story" id="story">
+        <div class="wrap">
+          <p class="eyebrow reveal"><span class="dash"></span>Our story</p>
+          <p class="story-lede" data-words>
+            Saltwood began with one hearth and one rule: if it doesn&rsquo;t taste better over fire, it doesn&rsquo;t
+            make the menu. Everything we serve meets oak, ember or smoke, and comes from boats, farms and foragers
+            within a hundred miles of our door.
+          </p>
+
+          <div class="chef reveal">
+            <div class="chef-mark" aria-hidden="true">MO</div>
+            <blockquote>
+              <p>&ldquo;Fire is the oldest seasoning there is. We just try to listen to it.&rdquo;</p>
+              <footer>Mara Okafor <span>&mdash; Chef &amp; Owner</span></footer>
+            </blockquote>
+          </div>
+
+          <ul class="stats">
+            <li class="reveal"><strong data-count="1">0</strong><span>Oak hearth, lit at 6&nbsp;AM daily</span></li>
+            <li class="reveal"><strong data-count="9">0</strong><span>Courses on the tasting menu</span></li>
+            <li class="reveal"><strong data-count="42">0</strong><span>Seats, so every plate gets attention</span></li>
+            <li class="reveal">
+              <strong data-count="140" data-suffix="+">0</strong><span>Low-intervention bottles</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SIGNATURES (scroll-driven 3D) -->
+      <section class="signatures" id="signatures" aria-label="Signature dishes">
+        <div class="sig-rail" aria-hidden="true">
+          <span class="sig-rail-num" id="sigNum">01</span>
+          <span class="sig-rail-bar"><i id="sigBar"></i></span>
+          <span class="sig-rail-total">04</span>
+        </div>
+
+        <article class="sig-step" data-dish="0">
+          <div class="sig-card">
+            <p class="eyebrow"><span class="dash"></span>Signature 01 &middot; From the garden</p>
+            <h2>Ember-roasted <em>beet</em></h2>
+            <p>
+              Buried in the coals for six hours until the sugars turn to toffee. Smoked crème fraîche, toasted hazelnut
+              and sorrel picked that morning.
+            </p>
+            <ul class="tags">
+              <li>Vegetarian</li>
+              <li>Gluten-free</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sig-step" data-dish="1">
+          <div class="sig-card">
+            <p class="eyebrow"><span class="dash"></span>Signature 02 &middot; From the sea</p>
+            <h2>Day-boat <em>scallop</em></h2>
+            <p>
+              Seared hard on cast iron over open flame. Brown-butter emulsion, green apple, chive oil and a spoon of
+              kaluga caviar.
+            </p>
+            <ul class="tags">
+              <li>Gluten-free</li>
+              <li>Caught this week</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sig-step" data-dish="2">
+          <div class="sig-card">
+            <p class="eyebrow"><span class="dash"></span>Signature 03 &middot; From the hearth</p>
+            <h2>Hearth-fired <em>wagyu</em></h2>
+            <p>
+              Dry-aged 45 days, kissed by oak and rested over embers. Black garlic purée, charred leek and a bone-marrow
+              jus finished tableside.
+            </p>
+            <ul class="tags">
+              <li>Dry-aged 45 days</li>
+              <li>Supplement $38</li>
+            </ul>
+          </div>
+        </article>
+        <article class="sig-step" data-dish="3">
+          <div class="sig-card">
+            <p class="eyebrow"><span class="dash"></span>Signature 04 &middot; To finish</p>
+            <h2>Dark <em>chocolate</em> dome</h2>
+            <p>
+              70% single-origin chocolate under a mirror glaze, miso caramel, smoked salt, raspberry and a sheet of
+              23-karat gold.
+            </p>
+            <ul class="tags">
+              <li>Vegetarian</li>
+              <li>Pairs with 20yr tawny</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <!-- MENU -->
+      <section class="menu solid" id="menu">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow reveal"><span class="dash"></span>The menu</p>
+            <h2 class="reveal">Written each morning,<br /><em>by the fire.</em></h2>
+          </div>
+
+          <div class="tabs reveal" role="tablist" aria-label="Menu sections">
+            <button role="tab" id="tab-tasting" aria-controls="panel-tasting" aria-selected="true">Tasting</button>
+            <button role="tab" id="tab-carte" aria-controls="panel-carte" aria-selected="false" tabindex="-1">
+              À la carte
+            </button>
+            <button role="tab" id="tab-drinks" aria-controls="panel-drinks" aria-selected="false" tabindex="-1">
+              Drinks
+            </button>
+            <span class="tab-ink" aria-hidden="true"></span>
+          </div>
+
+          <div class="panels">
+            <div class="panel active" role="tabpanel" id="panel-tasting" aria-labelledby="tab-tasting" tabindex="0">
+              <div class="panel-intro">
+                <p class="price-big">$145 <small>per guest</small></p>
+                <p>Wine pairing $95 &middot; Zero-proof pairing $55. Served to the whole table, 2&frac12; hours.</p>
+              </div>
+              <ol class="courses">
+                <li>
+                  <span>I</span>
+                  <div>
+                    <h3>Snacks from the hearth</h3>
+                    <p>Ember oyster, cultured butter, potato bread</p>
+                  </div>
+                </li>
+                <li>
+                  <span>II</span>
+                  <div>
+                    <h3>Ember-roasted beet</h3>
+                    <p>Smoked crème fraîche, hazelnut, sorrel</p>
+                  </div>
+                </li>
+                <li>
+                  <span>III</span>
+                  <div>
+                    <h3>Crudo of the day</h3>
+                    <p>Cured in kombu, yuzu kosho, burnt citrus</p>
+                  </div>
+                </li>
+                <li>
+                  <span>IV</span>
+                  <div>
+                    <h3>Day-boat scallop</h3>
+                    <p>Brown butter, green apple, kaluga caviar</p>
+                  </div>
+                </li>
+                <li>
+                  <span>V</span>
+                  <div>
+                    <h3>Hand-cut tagliolini</h3>
+                    <p>Smoked egg yolk, pecorino, black pepper</p>
+                  </div>
+                </li>
+                <li>
+                  <span>VI</span>
+                  <div>
+                    <h3>Line-caught turbot</h3>
+                    <p>Cooked on the bone, mussel &amp; saffron</p>
+                  </div>
+                </li>
+                <li>
+                  <span>VII</span>
+                  <div>
+                    <h3>Hearth-fired wagyu</h3>
+                    <p>Black garlic, charred leek, marrow jus</p>
+                  </div>
+                </li>
+                <li>
+                  <span>VIII</span>
+                  <div>
+                    <h3>Cheese from the cellar</h3>
+                    <p>Honeycomb, oat cracker, pickled walnut</p>
+                  </div>
+                </li>
+                <li>
+                  <span>IX</span>
+                  <div>
+                    <h3>Dark chocolate dome</h3>
+                    <p>Miso caramel, raspberry, 23-karat gold</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-carte" aria-labelledby="tab-carte" tabindex="0" hidden>
+              <div class="carte">
+                <div class="carte-col">
+                  <h3 class="carte-head">Raw &amp; small</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Oysters, mignonette</h4>
+                        <p>Half dozen, smoked shallot</p>
+                      </div>
+                      <b>24</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Potato bread <i class="tag">V</i></h4>
+                        <p>Cultured butter, sea salt</p>
+                      </div>
+                      <b>9</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Hamachi crudo <i class="tag">GF</i></h4>
+                        <p>Yuzu kosho, burnt citrus</p>
+                      </div>
+                      <b>22</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Ember beet <i class="tag">V</i></h4>
+                        <p>Smoked crème, hazelnut</p>
+                      </div>
+                      <b>18</b>
+                    </li>
+                  </ul>
+                </div>
+                <div class="carte-col">
+                  <h3 class="carte-head">From the fire</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Day-boat scallops <i class="tag">GF</i></h4>
+                        <p>Brown butter, apple</p>
+                      </div>
+                      <b>36</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Whole turbot, for two</h4>
+                        <p>Mussels, saffron, fennel</p>
+                      </div>
+                      <b>92</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Half chicken</h4>
+                        <p>Hay-smoked, charred lemon</p>
+                      </div>
+                      <b>38</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Wagyu striploin <i class="tag">GF</i></h4>
+                        <p>Black garlic, marrow jus</p>
+                      </div>
+                      <b>68</b>
+                    </li>
+                  </ul>
+                </div>
+                <div class="carte-col">
+                  <h3 class="carte-head">Sides &amp; sweet</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Coal-baked potatoes <i class="tag">V</i></h4>
+                        <p>Crème fraîche, chive</p>
+                      </div>
+                      <b>12</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Charred greens <i class="tag">VG</i></h4>
+                        <p>Chili, garlic, lemon</p>
+                      </div>
+                      <b>11</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Chocolate dome <i class="tag">V</i></h4>
+                        <p>Miso caramel, raspberry</p>
+                      </div>
+                      <b>16</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Smoked honey tart</h4>
+                        <p>Brown butter ice cream</p>
+                      </div>
+                      <b>14</b>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="legend">
+                V vegetarian &middot; VG vegan &middot; GF gluten-free. Please tell us about any allergies.
+              </p>
+            </div>
+
+            <div class="panel" role="tabpanel" id="panel-drinks" aria-labelledby="tab-drinks" tabindex="0" hidden>
+              <div class="carte">
+                <div class="carte-col">
+                  <h3 class="carte-head">Cocktails</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Hearth Old Fashioned</h4>
+                        <p>Smoked bourbon, maple, cedar</p>
+                      </div>
+                      <b>17</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Salt &amp; Pine</h4>
+                        <p>Gin, spruce, sea-salt tonic</p>
+                      </div>
+                      <b>16</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Ember Negroni</h4>
+                        <p>Charred orange, bitter red</p>
+                      </div>
+                      <b>16</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Garden Spritz <i class="tag">0%</i></h4>
+                        <p>Verjus, sorrel, soda</p>
+                      </div>
+                      <b>11</b>
+                    </li>
+                  </ul>
+                </div>
+                <div class="carte-col">
+                  <h3 class="carte-head">By the glass</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Grower Champagne</h4>
+                        <p>Brut Nature, Montagne de Reims</p>
+                      </div>
+                      <b>26</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Skin-contact Pinot Gris</h4>
+                        <p>Willamette Valley</p>
+                      </div>
+                      <b>17</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Chenin Blanc</h4>
+                        <p>Saumur, Loire</p>
+                      </div>
+                      <b>18</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Gamay</h4>
+                        <p>Morgon, Beaujolais</p>
+                      </div>
+                      <b>16</b>
+                    </li>
+                  </ul>
+                </div>
+                <div class="carte-col">
+                  <h3 class="carte-head">From the cellar</h3>
+                  <ul class="items">
+                    <li>
+                      <div>
+                        <h4>Syrah</h4>
+                        <p>Northern Rhône, 2018</p>
+                      </div>
+                      <b>140</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Nebbiolo</h4>
+                        <p>Barolo, 2016</p>
+                      </div>
+                      <b>210</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>Chardonnay</h4>
+                        <p>Jura, ouillé, 2020</p>
+                      </div>
+                      <b>118</b>
+                    </li>
+                    <li>
+                      <div>
+                        <h4>20yr Tawny Port</h4>
+                        <p>Douro, by the glass</p>
+                      </div>
+                      <b>19</b>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="legend">Ask for the full list of 140+ bottles. Corkage $35, waived on Sundays.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROOMS -->
+      <section class="rooms solid" id="rooms">
+        <div class="wrap">
+          <div class="section-head split">
+            <div>
+              <p class="eyebrow reveal"><span class="dash"></span>Ways to dine</p>
+              <h2 class="reveal">Three rooms,<br /><em>one fire.</em></h2>
+            </div>
+            <p class="reveal">
+              Watch the brigade work the hearth from the counter, settle into the dining room, or take the cellar for
+              the night.
+            </p>
+          </div>
+
+          <div class="room-grid">
+            <article class="room reveal" data-tilt>
+              <div class="room-art art-counter" aria-hidden="true"><span></span></div>
+              <div class="room-body">
+                <p class="room-meta">8 seats &middot; Tasting only</p>
+                <h3>The Hearth Counter</h3>
+                <p>Front-row seats to the fire. The chefs plate and serve every course right in front of you.</p>
+              </div>
+            </article>
+            <article class="room reveal" data-tilt>
+              <div class="room-art art-dining" aria-hidden="true"><span></span></div>
+              <div class="room-body">
+                <p class="room-meta">34 seats &middot; Tasting &amp; à la carte</p>
+                <h3>The Dining Room</h3>
+                <p>Low light, linen and oak. Order from the menu or hand the night over to the kitchen.</p>
+              </div>
+            </article>
+            <article class="room reveal" data-tilt>
+              <div class="room-art art-cellar" aria-hidden="true"><span></span></div>
+              <div class="room-body">
+                <p class="room-meta">Up to 16 guests &middot; Private</p>
+                <h3>The Cellar Room</h3>
+                <p>
+                  A private room among the bottles for birthdays, rehearsal dinners and business that deserves wine.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="reviews solid" aria-label="Guest reviews">
+        <div class="wrap">
+          <div class="review-score reveal">
+            <strong>4.9</strong>
+            <div>
+              <span class="stars" aria-label="Rated 4.9 out of 5">★★★★★</span>
+              <p>From 2,100+ guest reviews</p>
+            </div>
+          </div>
+          <div class="review-track" id="reviewTrack">
+            <figure class="review reveal">
+              <blockquote>
+                &ldquo;The scallop alone was worth the drive. Every course felt like it had a reason to be there.&rdquo;
+              </blockquote>
+              <figcaption>Dana R. &middot; Anniversary dinner</figcaption>
+            </figure>
+            <figure class="review reveal">
+              <blockquote>
+                &ldquo;We sat at the counter and watched the whole night happen. Warm, unhurried and genuinely
+                fun.&rdquo;
+              </blockquote>
+              <figcaption>Marcus T. &middot; Hearth Counter</figcaption>
+            </figure>
+            <figure class="review reveal">
+              <blockquote>
+                &ldquo;Hosted 14 people in the Cellar Room and it was flawless. The pairing was the talk of the
+                table.&rdquo;
+              </blockquote>
+              <figcaption>Priya S. &middot; Private dining</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESERVE -->
+      <section class="reserve solid" id="reserve">
+        <div class="wrap reserve-grid">
+          <div class="reserve-intro">
+            <p class="eyebrow reveal"><span class="dash"></span>Reservations</p>
+            <h2 class="reveal">Pull up<br /><em>a chair.</em></h2>
+            <p class="reveal">
+              Tables open 30 days ahead at 10 AM. For parties larger than 8 or the Cellar Room, write to us and our
+              events team will reply within a day.
+            </p>
+            <ul class="reserve-notes reveal">
+              <li><span>Policy</span>Cancel up to 24 hours before at no charge.</li>
+              <li><span>Dietary</span>Every course can be adapted. Just tell us.</li>
+              <li><span>Walk-ins</span>The bar is held for walk-ins every night.</li>
+            </ul>
+          </div>
+
+          <div class="booking reveal" id="booking">
+            <form class="booking-form" id="bookingForm" novalidate>
+              <div class="field-row keep">
+                <div class="field">
+                  <label for="date">Date</label>
+                  <input type="date" id="date" name="date" required />
+                </div>
+                <div class="field">
+                  <span class="label" id="guestsLabel">Guests</span>
+                  <div class="stepper" role="group" aria-labelledby="guestsLabel">
+                    <button type="button" data-step="-1" aria-label="Fewer guests">&minus;</button>
+                    <output id="guests" name="guests" aria-live="polite">2</output>
+                    <button type="button" data-step="1" aria-label="More guests">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <fieldset class="field">
+                <legend class="label">Time</legend>
+                <div class="slots" id="slots"></div>
+                <p class="hint" id="slotHint">Pick a date to see open tables.</p>
+              </fieldset>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" autocomplete="name" placeholder="Full name" required />
+                </div>
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 000-0000" required />
+                </div>
+              </div>
+              <div class="field">
+                <label for="bemail">Email</label>
+                <input
+                  id="bemail"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@email.com"
+                  required
+                />
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="occasion">Occasion</label>
+                  <select id="occasion" name="occasion">
+                    <option value="">None</option>
+                    <option>Birthday</option>
+                    <option>Anniversary</option>
+                    <option>Date night</option>
+                    <option>Business</option>
+                    <option>Celebration</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="seating">Seating</label>
+                  <select id="seating" name="seating">
+                    <option>Dining Room</option>
+                    <option>Hearth Counter</option>
+                    <option>No preference</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="notes">Notes <span class="opt">(optional)</span></label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  rows="2"
+                  placeholder="Allergies, accessibility, surprises&hellip;"
+                ></textarea>
+              </div>
+              <p class="form-error" id="formError" role="alert"></p>
+              <button type="submit" class="btn btn-ember btn-block">Request table</button>
+            </form>
+
+            <div class="booking-done" id="bookingDone" hidden tabindex="-1">
+              <svg viewBox="0 0 64 64" class="done-mark" aria-hidden="true"><use href="#mark" /></svg>
+              <p class="eyebrow">Confirmed &middot; <span id="doneCode"></span></p>
+              <h3>See you soon, <em id="doneName"></em>.</h3>
+              <p class="done-summary" id="doneSummary"></p>
+              <p class="hint">A confirmation is on its way to <span id="doneEmail"></span>.</p>
+              <button type="button" class="btn btn-line" id="bookAgain">Make another booking</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT -->
+      <section class="visit solid" id="visit">
+        <div class="wrap visit-grid">
+          <div class="visit-map reveal" aria-hidden="true">
+            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".08" />
+                </pattern>
+              </defs>
+              <rect width="400" height="300" fill="url(#grid)" />
+              <path class="water" d="M0 210 C80 190 140 240 220 220 S340 180 400 200 V300 H0Z" />
+              <path class="road" d="M0 120 H400 M150 0 V300 M290 0 L250 300 M0 40 L400 70" />
+              <path class="pier" d="M200 205 V258 M188 258 H212" />
+            </svg>
+            <span class="pin"><i></i></span>
+            <span class="map-label">Saltwood &middot; 88 Pier St</span>
+          </div>
+          <div class="visit-info">
+            <p class="eyebrow reveal"><span class="dash"></span>Visit</p>
+            <h2 class="reveal">On the water,<br /><em>by the pier.</em></h2>
+            <div class="visit-cols reveal">
+              <div>
+                <h3>Address</h3>
+                <p>88 Pier Street<br />Harbor District</p>
+                <a class="link" href="#visit">Get directions &rarr;</a>
+              </div>
+              <div>
+                <h3>Hours</h3>
+                <ul class="hours" id="hoursList">
+                  <li data-days="2,3,4"><span>Tue &ndash; Thu</span><span>5 &ndash; 10 PM</span></li>
+                  <li data-days="5,6"><span>Fri &ndash; Sat</span><span>5 &ndash; 11 PM</span></li>
+                  <li data-days="0"><span>Sunday</span><span>4 &ndash; 9 PM</span></li>
+                  <li data-days="1"><span>Monday</span><span>Closed</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Contact</h3>
+                <p>
+                  <a class="link" href="tel:+15550142290">(555) 014-2290</a><br /><a
+                    class="link"
+                    href="mailto:hello@saltwood.kitchen"
+                    >hello@saltwood.kitchen</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer solid">
+      <div class="wrap">
+        <div class="footer-top">
+          <form class="news" id="newsForm" novalidate>
+            <label for="newsEmail"
+              >Seasonal menus, wine dinners and the odd secret supper. Once a month, no noise.</label
+            >
+            <div class="news-row">
+              <input id="newsEmail" type="email" placeholder="Your email" autocomplete="email" required />
+              <button class="btn btn-ember btn-sm" type="submit">Subscribe</button>
+            </div>
+            <p class="news-msg" id="newsMsg" role="status" aria-live="polite"></p>
+          </form>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="#menu">Menu</a>
+            <a href="#rooms">Private dining</a>
+            <a href="#reserve">Reservations</a>
+            <a href="#visit">Gift cards</a>
+            <a href="#visit">Careers</a>
+          </nav>
+          <nav class="footer-links" aria-label="Social">
+            <a href="#top">Instagram</a>
+            <a href="#top">TikTok</a>
+            <a href="#top">Resy</a>
+          </nav>
+        </div>
+        <p class="footer-word" aria-hidden="true">Saltwood</p>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Saltwood. All rights reserved.</p>
+          <a href="#top" class="link">Back to top &uarr;</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
