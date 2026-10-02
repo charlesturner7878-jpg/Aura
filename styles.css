@@ -636,19 +636,6 @@ section {
   color: var(--cream-dim);
 }
 
-.big-quote {
-  margin: clamp(80px, 10vw, 140px) 0 0;
-  font-family: var(--display);
-  text-transform: uppercase;
-  font-size: clamp(36px, 6vw, 84px);
-  line-height: 1.02;
-  text-align: center;
-}
-.big-quote .script {
-  font-size: 1.3em;
-  text-shadow: 0 0 30px rgba(255, 170, 40, 0.5);
-}
-
 /* ---------- lookbook ---------- */
 .lookbook {
   background: linear-gradient(180deg, transparent, rgba(11, 9, 7, 0.88) 20%, rgba(11, 9, 7, 0.88) 80%, transparent);
