@@ -1,12 +1,13 @@
 :root {
-  --ink: #0b0907;
-  --ink-2: #15110c;
-  --cream: #efe1ba;
-  --cream-dim: #b9ab88;
-  --gold: #e3a62a;
-  --gold-hot: #ffbf3f;
-  --ember: #ff5a1f;
-  --line: rgba(239, 225, 186, 0.14);
+  /* Black, white and silver: neutral ground, silver for shine */
+  --ink: #0a0a0a;
+  --ink-2: #141414;
+  --white: #f4f4f4;
+  --grey: #a1a1a1;
+  --silver: #c4c7cc;
+  --silver-bright: #eceef1;
+  --line: rgba(255, 255, 255, 0.14);
+  --silver-sheen: linear-gradient(115deg, #8d9096 0%, #e9ebee 38%, #ffffff 48%, #a9acb2 60%, #f1f2f4 100%);
   --display: "Anton", Impact, "Arial Narrow", sans-serif;
   --body: "Space Grotesk", system-ui, -apple-system, sans-serif;
   --script: "Great Vibes", "Brush Script MT", cursive;
@@ -31,7 +32,7 @@ body {
 body {
   margin: 0;
   background: var(--ink);
-  color: var(--cream);
+  color: var(--white);
   font-family: var(--body);
   font-size: 17px;
   line-height: 1.6;
@@ -64,8 +65,23 @@ a {
   font-style: normal;
   font-weight: 400;
   text-transform: none;
-  color: var(--gold-hot);
+  color: var(--silver-bright);
   letter-spacing: 0;
+  background: var(--silver-sheen);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glint 6s ease-in-out infinite;
+}
+@keyframes glint {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
 }
 
 /* ---------- stage + overlays ---------- */
@@ -118,7 +134,7 @@ a {
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(255, 175, 50, 0.16), transparent 65%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07), transparent 65%);
   mix-blend-mode: screen;
   transition: opacity 0.4s;
   opacity: 0;
@@ -142,8 +158,8 @@ main,
 }
 .no-webgl {
   background:
-    radial-gradient(circle at 70% 30%, rgba(255, 166, 43, 0.35), transparent 40%),
-    radial-gradient(circle at 75% 35%, rgba(255, 61, 31, 0.25), transparent 55%), var(--ink);
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.16), transparent 40%),
+    radial-gradient(circle at 75% 35%, rgba(196, 199, 204, 0.12), transparent 55%), var(--ink);
   background-attachment: fixed;
 }
 
@@ -175,7 +191,7 @@ main,
   display: block;
   height: 100%;
   width: 40%;
-  background: var(--gold);
+  background: var(--silver);
   animation: load 1s ease-in-out infinite;
 }
 .loader.done {
@@ -213,7 +229,7 @@ main,
     backdrop-filter 0.3s;
 }
 .nav.scrolled {
-  background: rgba(11, 9, 7, 0.7);
+  background: rgba(10, 10, 10, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -249,12 +265,12 @@ main,
 }
 .nav-links a:hover {
   opacity: 1;
-  color: var(--gold-hot);
+  color: var(--silver-bright);
 }
 .nav-cta {
-  border: 1px solid var(--gold);
+  border: 1px solid var(--silver);
   padding: 9px 16px;
-  color: var(--gold-hot);
+  color: var(--silver-bright);
   opacity: 1 !important;
 }
 
@@ -276,25 +292,28 @@ main,
     transform 0.25s,
     box-shadow 0.25s,
     background 0.25s,
-    color 0.25s;
+    color 0.25s,
+    background-position 0.6s ease;
 }
-.btn-gold {
-  background: var(--gold);
+.btn-silver {
+  background: var(--silver-sheen);
+  background-size: 220% 100%;
+  background-position: 100% 0;
   color: var(--ink);
-  box-shadow: 0 0 0 rgba(255, 175, 50, 0);
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
 }
-.btn-gold:hover {
-  background: var(--gold-hot);
+.btn-silver:hover {
+  background-position: 0% 0;
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(255, 175, 50, 0.45);
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.28);
 }
 .btn-ghost {
-  border-color: var(--cream);
-  color: var(--cream);
+  border-color: var(--white);
+  color: var(--white);
   background: transparent;
 }
 .btn-ghost:hover {
-  background: var(--cream);
+  background: var(--white);
   color: var(--ink);
   transform: translateY(-2px);
 }
@@ -306,7 +325,7 @@ main,
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  color: var(--gold);
+  color: var(--silver);
   margin: 0 0 16px;
 }
 
@@ -353,12 +372,12 @@ main,
 .hero-title .script {
   font-size: 1.15em;
   line-height: 0.6;
-  text-shadow: 0 0 40px rgba(255, 170, 40, 0.6);
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.3));
 }
 
 .hero-sub {
   max-width: 440px;
-  color: var(--cream-dim);
+  color: var(--grey);
   margin: 0 0 36px;
 }
 .hero-ctas {
@@ -379,12 +398,12 @@ main,
   font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--cream-dim);
+  color: var(--grey);
 }
 .scroll-hint span {
   width: 1px;
   height: 46px;
-  background: linear-gradient(var(--gold), transparent);
+  background: linear-gradient(var(--silver), transparent);
   animation: drip 2s ease-in-out infinite;
   transform-origin: top;
 }
@@ -405,7 +424,7 @@ main,
 .marquee {
   overflow: hidden;
   border-block: 1px solid var(--line);
-  background: var(--gold);
+  background: var(--silver-sheen);
   color: var(--ink);
   transform: rotate(-2deg) scale(1.05);
   margin: 40px 0;
@@ -422,7 +441,7 @@ main,
 }
 .marquee-track b {
   font-weight: 400;
-  color: var(--ember);
+  color: var(--ink);
 }
 @keyframes marquee {
   to {
@@ -462,7 +481,7 @@ section {
 
 /* ---------- drop ---------- */
 .drop {
-  background: linear-gradient(180deg, transparent, rgba(11, 9, 7, 0.85) 25%, rgba(11, 9, 7, 0.85) 75%, transparent);
+  background: linear-gradient(180deg, transparent, rgba(10, 10, 10, 0.85) 25%, rgba(10, 10, 10, 0.85) 75%, transparent);
 }
 .drop-grid {
   display: grid;
@@ -481,7 +500,7 @@ section {
   will-change: transform;
   box-shadow:
     0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 80px rgba(227, 166, 42, 0.2);
+    0 0 80px rgba(255, 255, 255, 0.08);
 }
 .tilt img {
   width: 100%;
@@ -492,7 +511,7 @@ section {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 230, 170, 0.35), transparent 50%);
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.35), transparent 50%);
   mix-blend-mode: overlay;
 }
 .tilt-badge {
@@ -500,7 +519,7 @@ section {
   top: 20px;
   left: -14px;
   transform: translateZ(60px) rotate(-6deg);
-  background: var(--ember);
+  background: var(--white);
   color: var(--ink);
   font-family: var(--display);
   text-transform: uppercase;
@@ -522,13 +541,14 @@ section {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: var(--gold);
+  /* the hoodie's real color, so it stays mustard */
+  background: #d99a2b;
   box-shadow:
     0 0 0 3px var(--ink),
-    0 0 0 4px var(--gold);
+    0 0 0 4px var(--silver);
 }
 .drop-desc {
-  color: var(--cream-dim);
+  color: var(--grey);
   margin: 0 0 28px;
 }
 .drop-desc .script {
@@ -552,7 +572,7 @@ section {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.2em;
-  color: var(--gold);
+  color: var(--silver);
 }
 .sizes {
   display: flex;
@@ -564,7 +584,7 @@ section {
   min-width: 54px;
   height: 46px;
   background: transparent;
-  color: var(--cream);
+  color: var(--white);
   border: 1px solid var(--line);
   font-family: var(--body);
   font-weight: 700;
@@ -575,12 +595,12 @@ section {
     color 0.2s;
 }
 .sizes button:hover {
-  border-color: var(--gold);
+  border-color: var(--silver);
 }
 .sizes button.active {
-  background: var(--cream);
+  background: var(--white);
   color: var(--ink);
-  border-color: var(--cream);
+  border-color: var(--white);
 }
 
 /* ---------- manifesto ---------- */
@@ -593,7 +613,7 @@ section {
 .pillar {
   position: relative;
   padding: 40px 32px 44px;
-  background: linear-gradient(160deg, rgba(40, 30, 16, 0.7), rgba(11, 9, 7, 0.7));
+  background: linear-gradient(160deg, rgba(34, 34, 36, 0.7), rgba(10, 10, 10, 0.7));
   border: 1px solid var(--line);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -608,18 +628,18 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 175, 50, 0.18), transparent 60%);
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.1), transparent 60%);
   pointer-events: none;
 }
 .pillar:hover {
-  border-color: rgba(227, 166, 42, 0.6);
+  border-color: rgba(196, 199, 204, 0.6);
 }
 .pillar-num {
   font-family: var(--display);
   font-size: 64px;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--silver);
   display: block;
   margin-bottom: 26px;
 }
@@ -633,12 +653,12 @@ section {
 }
 .pillar p {
   margin: 0;
-  color: var(--cream-dim);
+  color: var(--grey);
 }
 
 /* ---------- lookbook ---------- */
 .lookbook {
-  background: linear-gradient(180deg, transparent, rgba(11, 9, 7, 0.88) 20%, rgba(11, 9, 7, 0.88) 80%, transparent);
+  background: linear-gradient(180deg, transparent, rgba(10, 10, 10, 0.88) 20%, rgba(10, 10, 10, 0.88) 80%, transparent);
 }
 .look-grid {
   display: grid;
@@ -672,12 +692,12 @@ section {
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: rgba(11, 9, 7, 0.75);
+  background: rgba(10, 10, 10, 0.75);
   padding: 10px 14px;
-  border-left: 3px solid var(--gold);
+  border-left: 3px solid var(--silver);
 }
 .look-copy p:not(.eyebrow) {
-  color: var(--cream-dim);
+  color: var(--grey);
   margin: 26px 0 34px;
   max-width: 460px;
 }
@@ -693,17 +713,17 @@ section {
   text-align: center;
   padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px);
   border: 1px solid var(--line);
-  background: radial-gradient(circle at 50% 0%, rgba(227, 166, 42, 0.18), transparent 60%), rgba(11, 9, 7, 0.75);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 60%), rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 .join-logo {
   width: 130px;
   margin: 0 auto 26px;
-  filter: drop-shadow(0 0 24px rgba(255, 175, 50, 0.45));
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.28));
 }
 .join-card > p {
-  color: var(--cream-dim);
+  color: var(--grey);
   max-width: 440px;
   margin: 18px auto 32px;
 }
@@ -715,24 +735,24 @@ section {
   flex: 1;
   min-width: 0;
   padding: 16px 18px;
-  background: rgba(239, 225, 186, 0.05);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--line);
-  color: var(--cream);
+  color: var(--white);
   font: inherit;
   outline: none;
   transition: border-color 0.2s;
 }
 .join-form input:focus {
-  border-color: var(--gold);
+  border-color: var(--silver);
 }
 .join-form input[aria-invalid="true"] {
-  border-color: var(--ember);
+  border-color: var(--white);
 }
 .join-msg {
   min-height: 1.6em;
   margin: 16px 0 0;
   font-size: 14px;
-  color: var(--gold-hot);
+  color: var(--silver-bright);
 }
 
 /* ---------- footer ---------- */
@@ -762,7 +782,7 @@ section {
 }
 .footer-brand span {
   font-size: 13px;
-  color: var(--cream-dim);
+  color: var(--grey);
 }
 .footer-links {
   display: flex;
@@ -777,13 +797,13 @@ section {
 }
 .footer-links a:hover {
   opacity: 1;
-  color: var(--gold-hot);
+  color: var(--silver-bright);
 }
 .footer-copy {
   grid-column: 1 / -1;
   margin: 0;
   font-size: 12px;
-  color: var(--cream-dim);
+  color: var(--grey);
   opacity: 0.7;
 }
 

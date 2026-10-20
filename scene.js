@@ -22,12 +22,12 @@ export function start({ onReady, reduceMotion }) {
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x0b0907, 1);
+  renderer.setClearColor(0x0a0a0a, 1);
 
   const scene = new THREE.Scene();
   // set as a background (not only a clear color) so it stays correct inside the bloom render targets
-  scene.background = new THREE.Color(0x0b0907);
-  scene.fog = new THREE.FogExp2(0x0b0907, 0.035);
+  scene.background = new THREE.Color(0x0a0a0a);
+  scene.fog = new THREE.FogExp2(0x0a0a0a, 0.035);
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 0, 11);
@@ -39,8 +39,8 @@ export function start({ onReady, reduceMotion }) {
     blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
-      uColorA: { value: new THREE.Color(0xffa62b) },
-      uColorB: { value: new THREE.Color(0xff3d1f) },
+      uColorA: { value: new THREE.Color(0xdfe2e6) },
+      uColorB: { value: new THREE.Color(0x5b5f66) },
       uIntensity: { value: 1 },
     },
     vertexShader: /* glsl */ `
@@ -93,13 +93,13 @@ export function start({ onReady, reduceMotion }) {
       const w = 5.2;
       const geo = new THREE.PlaneGeometry(w, w / aspect);
 
-      const front = new THREE.Color(0xe9cf96);
-      const edgeHot = new THREE.Color(0xc9861f);
-      const edgeDeep = new THREE.Color(0x241304);
+      const front = new THREE.Color(0xf2f3f5);
+      const edgeLight = new THREE.Color(0xa4a8ae);
+      const edgeDeep = new THREE.Color(0x18191b);
 
       for (let i = 0; i < LAYERS; i++) {
         const t = i / (LAYERS - 1); // 0 = front, 1 = back
-        const color = i === 0 ? front : edgeHot.clone().lerp(edgeDeep, Math.pow(t, 0.7));
+        const color = i === 0 ? front : edgeLight.clone().lerp(edgeDeep, Math.pow(t, 0.7));
         const mat = new THREE.MeshBasicMaterial({
           map: tex,
           color,
@@ -133,23 +133,23 @@ export function start({ onReady, reduceMotion }) {
     );
     return ring;
   }
-  const ringA = makeRing(3.6, 0.018, 0xffb43c, 0.95);
+  const ringA = makeRing(3.6, 0.018, 0xffffff, 0.9);
   ringA.rotation.set(1.2, 0.35, 0.2);
-  const ringB = makeRing(4.3, 0.01, 0xff5a1f, 0.6);
+  const ringB = makeRing(4.3, 0.01, 0xb9bdc3, 0.6);
   ringB.rotation.set(1.45, -0.5, -0.4);
-  const ringC = makeRing(5.1, 0.006, 0xefe1ba, 0.25);
+  const ringC = makeRing(5.1, 0.006, 0x8a8d92, 0.3);
   ringC.rotation.set(1.05, 0.1, 0.9);
   logoGroup.add(ringA, ringB, ringC);
 
   // little "planet" riding ring A
   const satellite = new THREE.Mesh(
     new THREE.SphereGeometry(0.09, 24, 24),
-    new THREE.MeshBasicMaterial({ color: 0xffe3a0 }),
+    new THREE.MeshBasicMaterial({ color: 0xffffff }),
   );
   ringA.add(satellite);
   const satellite2 = new THREE.Mesh(
     new THREE.SphereGeometry(0.06, 24, 24),
-    new THREE.MeshBasicMaterial({ color: 0xff7a3a }),
+    new THREE.MeshBasicMaterial({ color: 0xc4c7cc }),
   );
   ringB.add(satellite2);
 
@@ -210,10 +210,10 @@ export function start({ onReady, reduceMotion }) {
         float size = mix(1.5, 5.5, pow(aSeed.y, 3.0));
         gl_PointSize = size * uPixelRatio * (10.0 / -mv.z);
 
-        vec3 gold = vec3(1.0, 0.70, 0.22);
-        vec3 ember = vec3(1.0, 0.33, 0.10);
-        vec3 cream = vec3(1.0, 0.93, 0.78);
-        vColor = aSeed.x < 0.55 ? gold : (aSeed.x < 0.85 ? ember : cream);
+        vec3 silver = vec3(0.80, 0.82, 0.86);
+        vec3 graphite = vec3(0.45, 0.46, 0.49);
+        vec3 white = vec3(1.0, 1.0, 1.0);
+        vColor = aSeed.x < 0.55 ? silver : (aSeed.x < 0.85 ? graphite : white);
         vFade = 0.55 + 0.45 * sin(uTime * 1.5 + aSeed.z * 6.0);
       }
     `,
